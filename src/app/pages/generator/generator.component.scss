@@ -1,0 +1,42 @@
+#meme {
+  height: 600px;
+  width: 80%;
+  margin: 0 auto;
+  background-color: #000;
+  position: relative;
+
+  background-position: 0 0;
+  background-repeat: none;
+  background-size: cover;
+
+  border-radius: 0.5rem;
+
+  > div {
+    color: white;
+    text-align: center;
+    position: absolute;
+    border: 1px dashed white;
+
+    left: 0.5rem;
+    right: 1rem;
+  }
+
+  #upper {
+    top: 0;
+  }
+
+  #lower {
+    bottom: 0;
+  }
+}
+
+#controls {
+  width: 80%;
+  max-width: min-content;
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}

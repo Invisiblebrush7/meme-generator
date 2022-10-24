@@ -1,0 +1,39 @@
+<form (submit)="crearUsuario()" class="form-container" [formGroup]="signUpForm">
+  <h1>Create an account</h1>
+  <hr />
+  <h3>Join the best meme community online</h3>
+  <p>
+    Is valid form? <strong>{{ this.signUpForm.valid }}</strong>
+  </p>
+
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput type="text" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Confirm password</mat-label>
+    <input matInput type="password" formControlName="confirmPass" />
+  </mat-form-field>
+
+  <mat-checkbox formControlName="terms"
+    >Confirm terms and conditions</mat-checkbox
+  >
+
+  <div class="buttons">
+    <button mat-flat-button color="primary">Crear</button>
+    <button type="button" mat-flat-button routerLink="" color="warn">
+      Cancelar
+    </button>
+  </div>
+</form>
