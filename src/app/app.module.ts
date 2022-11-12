@@ -12,17 +12,49 @@ import { GeneratorComponent } from './pages/generator/generator.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+} from '@abacritt/angularx-social-login';
+
+import { environment } from 'src/environments/environment';
 
 @NgModule({
-  declarations: [AppComponent, NewLineToBrPipe, SignupComponent, GeneratorComponent, ProfileComponent, LoginComponent, ForbiddenComponent],
+  declarations: [
+    AppComponent,
+    NewLineToBrPipe,
+    SignupComponent,
+    GeneratorComponent,
+    ProfileComponent,
+    LoginComponent,
+    ForbiddenComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
+    SocialLoginModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(environment.googleId),
+          },
+        ],
+        onError: (err: any) => {
+          console.error(err);
+        },
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
