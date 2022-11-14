@@ -1,52 +1,89 @@
-<div id="controls">
-  <input
-    #imageElement
-    type="file"
-    [(ngModel)]="file"
-    (change)="doOnChange(imageElement)"
-    accept="image/*"
-  />
+<mat-toolbar color="primary" class="navbar">
+  <mat-toolbar-row>
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button
+      mat-icon-button
+      (click)="shareMeme()"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>share</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="saveImage()"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>save</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      aria-label="Example icon-button with menu icon"
+      [matBadge]="this.notifications"
+      matBadgePosition="after"
+      matBadgeColor="accent"
+    >
+      <mat-icon>notifications</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-  <mat-form-field appearance="outline">
-    <textarea matInput rows="3" id="upper" [(ngModel)]="upper"></textarea>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <textarea matInput rows="3" id="lower" [(ngModel)]="lower"></textarea>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Choose a color</mat-label>
+<div class="main-content-container">
+  <div id="controls">
     <input
-      matInput
-      type="color"
-      name="color-picker"
-      id="color-picker"
-      [(ngModel)]="color"
+      #imageElement
+      type="file"
+      [(ngModel)]="file"
+      (change)="doOnChange(imageElement)"
+      accept="image/*"
     />
-  </mat-form-field>
 
-  <mat-slider [(ngModel)]="fontSize" [min]="10" [max]="60"></mat-slider>
+    <mat-form-field appearance="outline">
+      <textarea matInput rows="3" id="upper" [(ngModel)]="upper"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <textarea matInput rows="3" id="lower" [(ngModel)]="lower"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a color</mat-label>
+      <input
+        matInput
+        type="color"
+        name="color-picker"
+        id="color-picker"
+        [(ngModel)]="color"
+      />
+    </mat-form-field>
+
+    <mat-slider [(ngModel)]="fontSize" [min]="10" [max]="60"></mat-slider>
+  </div>
+
+  <div
+    id="meme"
+    [ngStyle]="{ 'background-image': 'url(' + this.dataUrl + ')' }"
+  >
+    <div
+      id="upper"
+      [innerHTML]="upper | newLineToBr"
+      [ngStyle]="{
+        'font-size': this.fontSize + 'px',
+        'line-height': this.fontSize + 4 + 'px',
+        color: this.color
+      }"
+    ></div>
+    <div
+      id="lower"
+      [innerHTML]="lower | newLineToBr"
+      [ngStyle]="{
+        'font-size': this.fontSize + 'px',
+        'line-height': this.fontSize + 4 + 'px',
+        color: this.color
+      }"
+    ></div>
+  </div>
 </div>
 
-<div id="meme" [ngStyle]="{ 'background-image': 'url(' + this.dataUrl + ')' }">
-  <div
-    id="upper"
-    [innerHTML]="upper | newLineToBr"
-    [ngStyle]="{
-      'font-size': this.fontSize + 'px',
-      'line-height': this.fontSize + 4 + 'px',
-      color: this.color
-    }"
-  ></div>
-  <div
-    id="lower"
-    [innerHTML]="lower | newLineToBr"
-    [ngStyle]="{
-      'font-size': this.fontSize + 'px',
-      'line-height': this.fontSize + 4 + 'px',
-      color: this.color
-    }"
-  ></div>
-</div>
 <button mat-button color="accent" (click)="saveImage()">Guardar</button>
+<button mat-button color="accent" (click)="shareMeme()">Compartir</button>

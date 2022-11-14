@@ -8,6 +8,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -20,6 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatToolbarModule,
+    MatBadgeModule,
   ],
 })
 export class MaterialModule {}

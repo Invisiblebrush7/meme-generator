@@ -11,8 +11,12 @@ export class AppComponent {
     socialAuthService.authState.subscribe((user) => {
       if (user) {
         console.log('User logged in:', user);
+        localStorage.setItem('token', user.idToken);
+        localStorage.setItem('role', 'client');
       } else {
         console.log('User logged out');
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
       }
     });
   }

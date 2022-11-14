@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { toJpeg } from 'html-to-image';
+import * as socketIO from 'socket.io-client';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-generator',
@@ -9,7 +11,16 @@ import { toJpeg } from 'html-to-image';
 export class GeneratorComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.socketClient = socketIO.io(environment.apiUrl);
+    this.socketClient.on('onShared', (data: any) => {
+      console.log('Alguien compartió un meme\n', data);
+    });
+  }
+
+  socketClient: any;
+
+  notifications: number = 0;
 
   title = 'meme-generator';
   file: any;
@@ -40,6 +51,11 @@ export class GeneratorComponent implements OnInit {
       anchor.download = 'cool-meme.jpg';
       anchor.href = e;
       anchor.click();
+    });
+  }
+  shareMeme() {
+    this.socketClient.emit('share', {
+      name: 'Cool meme',
     });
   }
 }
