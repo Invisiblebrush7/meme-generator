@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'meme',
     component: GeneratorComponent,
-    canActivate: [AuthGuard, RoleGuard],
+    // canActivate: [AuthGuard, RoleGuard],
     data: { role: 'client' },
   },
   {

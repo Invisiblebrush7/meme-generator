@@ -31,6 +31,8 @@ export class GeneratorComponent implements OnInit {
   dataUrl: string = '';
   filename: string = '';
 
+  success: boolean = false;
+
   // @ViewChild('imageElement') imageElement: any; // Permite guardar el tag de HTML del tag con id imageElement
 
   doOnChange(target: any) {
@@ -51,6 +53,7 @@ export class GeneratorComponent implements OnInit {
       anchor.download = 'cool-meme.jpg';
       anchor.href = e;
       anchor.click();
+      this.success = true;
     });
   }
   shareMeme() {

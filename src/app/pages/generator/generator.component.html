@@ -39,11 +39,21 @@
     />
 
     <mat-form-field appearance="outline">
-      <textarea matInput rows="3" id="upper" [(ngModel)]="upper"></textarea>
+      <textarea
+        matInput
+        rows="3"
+        id="upper-text"
+        [(ngModel)]="upper"
+      ></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <textarea matInput rows="3" id="lower" [(ngModel)]="lower"></textarea>
+      <textarea
+        matInput
+        rows="3"
+        id="lower-text"
+        [(ngModel)]="lower"
+      ></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -64,6 +74,7 @@
     id="meme"
     [ngStyle]="{ 'background-image': 'url(' + this.dataUrl + ')' }"
   >
+    <p *ngIf="this.success">Se creó correctamente</p>
     <div
       id="upper"
       [innerHTML]="upper | newLineToBr"
@@ -85,5 +96,7 @@
   </div>
 </div>
 
-<button mat-button color="accent" (click)="saveImage()">Guardar</button>
+<button mat-button color="accent" id="create" (click)="saveImage()">
+  Guardar
+</button>
 <button mat-button color="accent" (click)="shareMeme()">Compartir</button>
